@@ -201,7 +201,7 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-        final TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
+        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
@@ -248,12 +248,12 @@ public class ArticleDetailFragment extends Fragment implements
                                 updateStatusBar();
                             }
 
-                            Snackbar.make(mRootView, titleView.getText(), Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(mRootView, getActivity().getString(R.string.snackbar_loading), Snackbar.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-                            Snackbar.make(mRootView, volleyError.getMessage(), Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(mRootView, getActivity().getString(R.string.snackbar_error).concat(volleyError.getMessage()) , Snackbar.LENGTH_LONG).show();
 
                         }
                     });

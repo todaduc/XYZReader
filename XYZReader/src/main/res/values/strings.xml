@@ -8,5 +8,6 @@
     <string name="action_share">Share</string>
 
     <string name="up">Up</string>
-
+    <string name="snackbar_loading">Loading completed</string>
+    <string name="snackbar_error">Error: </string>
 </resources>
