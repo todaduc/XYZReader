@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
@@ -200,7 +201,7 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
+        final TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
@@ -246,10 +247,13 @@ public class ArticleDetailFragment extends Fragment implements
                                         .setBackgroundColor(mMutedColor);
                                 updateStatusBar();
                             }
+
+                            Snackbar.make(mRootView, titleView.getText(), Snackbar.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
+                            Snackbar.make(mRootView, volleyError.getMessage(), Snackbar.LENGTH_LONG).show();
 
                         }
                     });
@@ -283,6 +287,7 @@ public class ArticleDetailFragment extends Fragment implements
         }
 
         bindViews();
+
     }
 
     @Override
